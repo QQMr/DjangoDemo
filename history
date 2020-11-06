@@ -1,0 +1,25 @@
+python -v
+python 
+cd d:
+cd d
+cd d\
+cd d:
+d:
+cd Study
+CD Django
+cd djangogirls
+python39
+python3
+pip -v
+python -m venv myvenv
+myvenv\Scripts\activate
+pip install django==2.2
+pip install djangorestframework=3.9.2
+pip install djangorestframework==3.9.2
+dir
+ls
+pip list
+.code
+history
+doskey /HISTORY
+doskey /HISTORY > install > history
