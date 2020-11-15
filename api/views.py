@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = [TokenAuthentication]
 
     @action(detail=True, methods=['Post'])
     def rate_movie(self, request, pk=None):
@@ -35,11 +35,11 @@ class MovieViewSet(viewsets.ModelViewSet):
             reponse = {'message': 'its working'}
             return Response(reponse, status=status.HTTP_200_OK)
         else:
-            reponse = {'message': 'not working'}
+            reponse = {'message': 'not working, please enter stars'}
             return Response(reponse, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
-    serializer_class = (RatingSerializer)
-    authentication_classes = (TokenAuthentication,)
+    serializer_class = RatingSerializer
+    authentication_classes = [ TokenAuthentication ]
