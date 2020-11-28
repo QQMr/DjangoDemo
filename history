@@ -23,3 +23,6 @@ pip list
 history
 doskey /HISTORY
 doskey /HISTORY > install > history
+
+pip install django-cors-headers==3.2.1
+
