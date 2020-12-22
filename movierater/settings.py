@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "10.0.2.2",
     "127.0.0.1",
+    '192.168.0.101',
 ]
 
 
@@ -62,6 +63,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 CORS_ORIGIN_REGEX_WHITELIST = [
     r"^http://localhost:.*",
+    # r"^http://192.168.0.1:.*",
     r"^http://10.0.2.2:.*",
     # r".*",
 ]
