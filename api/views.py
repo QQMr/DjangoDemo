@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Movie, Rating
-from .serializers import UserSerializer,MovieSerializer, RatingSerializer
+from .serializers import UserSerializer, MovieSerializer, RatingSerializer
 from django.contrib.auth.models import User
 
 # Create your views here
@@ -37,11 +37,18 @@ class MovieViewSet(viewsets.ModelViewSet):
                 rating = Rating.objects.get(user=user.id, movie=movie.id)
                 rating.stars = stars
                 rating.save()
+                serializer = RatingSerializer(rating, many=False)
+                response = {'message': 'Rating updated',
+                            'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
             except:
-                Rating.objects.create(user=user, movie=movie, stars=stars)
+                rating = Rating.objects.create(
+                    user=user, movie=movie, stars=stars)
+                serializer = RatingSerializer(rating, many=False)
+                response = {'message': 'Rating created',
+                            'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
 
-            reponse = {'message': 'its working'}
-            return Response(reponse, status=status.HTTP_200_OK)
         else:
             reponse = {'message': 'not working, please enter stars'}
             return Response(reponse, status=status.HTTP_400_BAD_REQUEST)
@@ -50,7 +57,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
-    authentication_classes = [ TokenAuthentication ]
+    authentication_classes = [TokenAuthentication]
     permission_classes = [AllowAny]
 
     def update(self, request, *args, **kwargs):
