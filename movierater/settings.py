@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from decouple import config
-from dj_database_url as dburl
+from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -94,10 +94,10 @@ WSGI_APPLICATION = 'movierater.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-default_dburl = 'sqlite:///' +　os.path.join(BASE_DIR, 'db.sqlite3')
+default_dburl = 'sqlite:///'+os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {
-    'default': {'DATABASE_URL', default = default_dburl, cast = dburl},
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
 REST_FRAMEWORK = {
