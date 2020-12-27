@@ -30,6 +30,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = [
     "movie-rater-tutorial-burton.herokuapp.com",
+    "192.168.0.101",
 ]
 
 
