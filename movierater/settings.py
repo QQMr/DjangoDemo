@@ -61,6 +61,8 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    "https://movie-rater-1b6af.web.app",
+    "https://movie-rater-1b6af.firebaseapp.com",
 )
 CORS_ORIGIN_REGEX_WHITELIST = [
     r"^http://localhost:.*",
